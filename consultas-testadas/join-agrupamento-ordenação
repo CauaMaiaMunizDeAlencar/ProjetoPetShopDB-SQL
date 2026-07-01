@@ -1,0 +1,38 @@
+-- ============================================================
+-- CONSULTAS COM JOIN
+-- ============================================================
+
+-- 1. Retorna todas as vendas e seus respectivos clientes,
+-- incluindo vendas que não possuem um cliente associado.
+SELECT v.venda_id, v.data_e_hora, v.valor_total, c.nome
+FROM venda v
+LEFT JOIN cliente c ON v.cpf_cliente = c.cpf;
+
+-- 2. Retorna os produtos pertencentes à venda de ID 1.
+SELECT co.codigo_de_barras, p.nome, p.preco, co.quantidade
+FROM contem AS co
+JOIN produto p ON p.codigo_de_barras = co.codigo_de_barras
+WHERE co.venda_id = 1;
+
+-- 3. Retorna os produtos fornecidos por um determinado fornecedor.
+SELECT p.nome
+FROM fornece f
+JOIN produto p ON f.codigo_de_barras = p.codigo_de_barras
+WHERE f.cnpj = '43.827.195/0001-81';
+
+-- ============================================================
+-- AGRUPAMENTO E ORDENAÇÃO
+-- ============================================================
+
+-- 4. Retorna a quantidade total vendida de cada produto.
+SELECT p.nome, SUM(c.quantidade) AS total_vendido
+FROM contem c
+JOIN produto p ON c.codigo_de_barras = p.codigo_de_barras
+GROUP BY p.nome;
+
+-- 5. Retorna os produtos mais vendidos em ordem decrescente.
+SELECT p.nome, SUM(c.quantidade) AS total
+FROM contem c
+JOIN produto p ON c.codigo_de_barras = p.codigo_de_barras
+GROUP BY p.nome
+ORDER BY total DESC;
