@@ -50,9 +50,9 @@ CREATE DATABASE petshoppers;
 USE petshoppers;
 ```
 
-2. Execute os scripts da pasta `scripts` na ordem numérica apresentada anteriormente.
+2. Execute os scripts da pasta `criacao-tabela` na ordem numérica apresentada anteriormente.
 
-3. Execute as consultas da pasta `consultas`.
+3. Execute as consultas da pasta `consultas-testadas`.
 
 Agradeço por ler até aqui!
 Autor: Cauã Maia Muniz de Alencar.
